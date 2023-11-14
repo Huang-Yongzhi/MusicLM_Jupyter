@@ -50,7 +50,7 @@ kmeans_path = 'hubert_base_ls960_L9_km500.bin'
 audio_output_dir = './downloaded_audios'
 batch_size = 1
 data_max_length = 320 * 32
-num_train_steps = 1
+num_train_steps = 1_000
 
 # 函数：训练 SemanticTransformer
 def train_semantic_transformer(): 
