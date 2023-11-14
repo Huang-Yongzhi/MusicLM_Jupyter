@@ -59,7 +59,7 @@ quantizer = MuLaNEmbedQuantizer(
 
 
 # 函数：训练 FineTransformer
-def train_fine_transformer(audio_data, combined_data):
+def train_fine_transformer():
     soundstream = MusicLMSoundStream()
 
     fine_transformer = FineTransformer(
@@ -93,12 +93,12 @@ def train_fine_transformer(audio_data, combined_data):
 
 
 
-# 加载处理后的数据
-with open('processed_data/audio_data.pkl', 'rb') as f:
-    audio_data = pickle.load(f)
+# # 加载处理后的数据
+# with open('processed_data/audio_data.pkl', 'rb') as f:
+#     audio_data = pickle.load(f)
 
-with open('processed_data/text_data.pkl', 'rb') as f:
-    text_data = pickle.load(f)
+# with open('processed_data/text_data.pkl', 'rb') as f:
+#     text_data = pickle.load(f)
 
 # 使用 audio_data 和 text_data 进行训练
-train_fine_transformer(audio_data, text_data)
+train_fine_transformer()
