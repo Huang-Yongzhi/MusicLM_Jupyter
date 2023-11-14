@@ -10,6 +10,17 @@ from musiclm_pytorch import MuLaN, AudioSpectrogramTransformer, TextTransformer
 
 
 # 公共变量
+
+checkpoint_path = 'hubert_base_ls960.pt'
+kmeans_path = 'hubert_base_ls960_L9_km500.bin'
+
+audio_output_dir = './downloaded_audios'
+batch_size = 1
+data_max_length = 320 * 32
+num_train_steps = 1_000
+
+
+
 audio_transformer = AudioSpectrogramTransformer(
     dim = 512,
     depth = 6,
@@ -37,19 +48,6 @@ quantizer = MuLaNEmbedQuantizer(
     mulan = mulan,                          # pass in trained mulan from above
     conditioning_dims = (1024, 1024, 1024), # say all three transformers have model dimensions of 1024
     namespaces = ('semantic', 'coarse', 'fine'))
-
-# now say you want the conditioning embeddings for semantic transformer
-wavs = torch.randn(2, 1024)
-conds = quantizer(wavs = wavs, namespace = 'semantic') # (2, 8, 1024) - 8 is number of quantizers
-
-
-checkpoint_path = 'hubert_base_ls960.pt'
-kmeans_path = 'hubert_base_ls960_L9_km500.bin'
-
-audio_output_dir = './downloaded_audios'
-batch_size = 1
-data_max_length = 320 * 32
-num_train_steps = 1_000
 
 
 # 函数：训练 CoarseTransformer
